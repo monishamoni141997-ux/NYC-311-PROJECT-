@@ -11,7 +11,7 @@ st.write("GUVI Data Science Project Analysis Dashboard.")
 @st.cache_data
 def load_data():
     try:
-        df = pd.read_parquet("nyc_data.parquet", low_memory=False)
+        df = pd.read_parquet("nyc_data.parquet")
     except FileNotFoundError:
         data = {
             'unique_key': [f'KEY_{i}' for i in range(1000)],
