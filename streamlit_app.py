@@ -8,14 +8,15 @@ import json
 st.set_page_config(page_title="NYC 311 Data Analysis Dashboard", layout="wide")
 
 st.title("🏙️ NYC 311 Urban Pulse - 15 Core Investigations Dashboard")
-st.write("GUVI Data Science Project Analysis based on 100,000 records.")
+st.write("GUVI Data Science Project Analysis.")
 
 @st.cache_data
 def load_data():
     try:
         df = pd.read_csv("urban_pulse_100k_data.csv", low_memory=False)
     except FileNotFoundError:
-        url = "https://data.cityofnewyork.us/resource/erm2-nwe9.json?$limit=100000"
+        # டூ டைம் அவுட் தவிர்க்க limit-ஐ 10,000 ஆக குறைக்கிறோம்
+        url = "https://data.cityofnewyork.us/resource/erm2-nwe9.json?$limit=10000"
         response = urllib.request.urlopen(url)
         data = json.loads(response.read().decode())
         df = pd.read_json(json.dumps(data))
