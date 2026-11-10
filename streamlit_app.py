@@ -11,7 +11,7 @@ st.write("GUVI Data Science Project Analysis Dashboard.")
 @st.cache_data
 def load_data():
     try:
-        df = pd.read_csv("urban_pulse_100k_data.csv", low_memory=False)
+        df = pd.read_parquet("nyc_data.parquret", low_memory=False)
     except FileNotFoundError:
         # எரர் வராமல் இருக்க சாம்பிள் டேட்டா பிரேம் ஒன்றை உருவாக்கிக் கொள்கிறோம்
         data = {
