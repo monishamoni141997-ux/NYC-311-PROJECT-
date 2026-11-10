@@ -2,6 +2,8 @@ import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
+import urllib.request
+import json
 
 st.set_page_config(page_title="NYC 311 Data Analysis Dashboard", layout="wide")
 
@@ -10,7 +12,14 @@ st.write("GUVI Data Science Project Analysis based on 100,000 records.")
 
 @st.cache_data
 def load_data():
-    df = pd.read_csv("urban_pulse_100k_data.csv", low_memory=False)
+    try:
+        df = pd.read_csv("urban_pulse_100k_data.csv", low_memory=False)
+    except FileNotFoundError:
+        url = "https://data.cityofnewyork.us/resource/erm2-nwe9.json?$limit=100000"
+        response = urllib.request.urlopen(url)
+        data = json.loads(response.read().decode())
+        df = pd.read_json(json.dumps(data))
+        
     if 'created_date' in df.columns:
         df['created_date'] = pd.to_datetime(df['created_date'], errors='coerce')
     if 'closed_date' in df.columns:
