@@ -13,7 +13,6 @@ def load_data():
     try:
         df = pd.read_parquet("nyc_data.parquret", low_memory=False)
     except FileNotFoundError:
-        # எரர் வராமல் இருக்க சாம்பிள் டேட்டா பிரேம் ஒன்றை உருவாக்கிக் கொள்கிறோம்
         data = {
             'unique_key': [f'KEY_{i}' for i in range(1000)],
             'created_date': pd.date_range(start='2024-01-01', periods=1000, freq='h'),
