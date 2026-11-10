@@ -16,8 +16,8 @@ def load_data():
         # எரர் வராமல் இருக்க சாம்பிள் டேட்டா பிரேம் ஒன்றை உருவாக்கிக் கொள்கிறோம்
         data = {
             'unique_key': [f'KEY_{i}' for i in range(1000)],
-            'created_date': pd.date_range(start='2024-01-01', periods=1000, freq='H'),
-            'closed_date': pd.date_range(start='2024-01-01 02:00:00', periods=1000, freq='H'),
+            'created_date': pd.date_range(start='2024-01-01', periods=1000, freq='h'),
+            'closed_date': pd.date_range(start='2024-01-01 02:00:00', periods=1000, freq='h'),
             'complaint_type': ['Noise - Residential', 'HEATING', 'PLUMBING', 'Street Condition', 'Water System'] * 200,
             'agency': ['NYPD', 'HPD', 'DEP', 'DOT'] * 250,
             'borough': ['MANHATTAN', 'BROOKLYN', 'QUEENS', 'BRONX', 'STATEN ISLAND'] * 200,
